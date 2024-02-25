@@ -1,3 +1,8 @@
+(**
+   Tiffany Pak
+   I pledge my honor that I have abided by the Stevens Honor System.
+**)
+
 open Parser_plaf.Ast
 open Parser_plaf.Parser
 open Ds
@@ -66,6 +71,54 @@ let rec eval_expr : expr -> exp_val ea_result =
     string_of_env >>= fun str ->
     print_endline str; 
     error "Debug called"
+
+  | IsEmpty(e) -> 
+    eval_expr e >>=
+    tree_of_treeVal >>= fun t ->
+    if t = Empty
+    then return (BoolVal true)
+    else return (BoolVal false)
+
+  | EmptyTree(_t) -> 
+    return (TreeVal(Empty))
+
+  | Node (e1, e2, e3) -> 
+    eval_expr e1 >>= fun v ->
+    eval_expr e2 >>=
+    tree_of_treeVal >>= fun left ->
+    eval_expr e3 >>=
+    tree_of_treeVal >>= fun right ->
+    return (TreeVal (Node(v, left, right)))
+
+  | CaseT(e1, e2, id1, id2, id3, e3) ->
+    eval_expr e1 >>=
+    tree_of_treeVal >>= fun t ->
+    (match t with 
+    | Empty -> eval_expr e2
+    | Node(v, left, right) -> 
+      extend_env id1 v >>+ extend_env id2 (TreeVal left) >>+ extend_env id3 (TreeVal right) >>+
+      eval_expr e3)
+
+  | Record(fs) ->
+    let (x,y) = (List.split fs) in
+    if (duplicates x)
+    then error "Record: duplicate fields"
+    else
+      let (_,z) = (List.split y) in
+      sequence(List.map eval_expr(z)) >>= fun rest -> return @@ RecordVal (List.combine x rest)
+
+  | Proj(e, id) ->
+    eval_expr e >>= fields_of_recordVal >>= fun l ->
+    let rec find =
+    fun x ->
+    match x with 
+    | [] -> error "Proj: field does not exist"
+    | (y,z)::t -> 
+    if y = id 
+    then return (z)
+    else find t
+    in find l
+
   | _ -> failwith "Not implemented yet!"
 
 (** [eval_prog e] evaluates program [e] *)

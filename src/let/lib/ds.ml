@@ -1,13 +1,23 @@
+(**
+   Tiffany Pak
+   I pledge my honor that I have abided by the Stevens Honor System.
+**)
+
 (* This file defines expressed values and environments *)
 
 (* expressed values and environments are defined mutually recursively *)
 
+type 'a tree = Empty | Node of 'a * 'a tree * 'a tree
 
 type exp_val =
   | NumVal of int
   | BoolVal of bool
+  | UnitVal
+  | ListVal of exp_val list
+  | TreeVal of exp_val tree
   | PairVal of exp_val*exp_val
   | TupleVal of exp_val list
+  | RecordVal of (string*exp_val) list
 type env =
   | EmptyEnv
   | ExtendEnv of string*exp_val*env
@@ -106,13 +116,30 @@ let list_of_tupleVal : exp_val -> (exp_val list)  ea_result =  function
 let pair_of_pairVal : exp_val -> (exp_val*exp_val) ea_result =  function
   |  PairVal(ev1,ev2) -> return (ev1,ev2)
   | _ -> error "Expected a pair!"
+
+let tree_of_treeVal : exp_val -> 'a tree ea_result = function
+  | TreeVal tree -> return tree
+  | _ -> error "Expected a tree value"
+
+let rec duplicates t =
+match t with
+  | [] -> false
+  | h :: t ->
+    List.mem h t || duplicates t
+
+let fields_of_recordVal : exp_val -> (string * exp_val) list ea_result = function
+  | RecordVal fields -> return fields
+  | _ -> error "Expected a record value"
            
 let rec string_of_expval = function
   | NumVal n -> "NumVal " ^ string_of_int n
   | BoolVal b -> "BoolVal " ^ string_of_bool b
-  | PairVal (ev1,ev2) -> "PairVal("^string_of_expval ev1
-                         ^","^ string_of_expval ev2^")"
+  | UnitVal -> "UnitVal"
+  | ListVal(_evs) -> "ListVal"
+  | TreeVal(_t) -> "TreeVal"
+  | PairVal (ev1,ev2) -> "PairVal("^string_of_expval ev1 ^","^ string_of_expval ev2^")"
   | TupleVal evs -> "TupleVal("^String.concat "," (List.map string_of_expval evs)^")"
+  | RecordVal(_fs) -> "RecordVal"
 
 let rec string_of_env' ac = function
   | EmptyEnv ->  "["^String.concat ",\n" ac^"]"

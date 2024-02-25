@@ -1,0 +1,30 @@
+# dune utop
+# OCAMLPARAM: unset
+# Shared cache: disabled
+# Shared cache location: /Users/tiffanypak/.cache/dune/db
+# Workspace root: /Users/tiffanypak/Desktop/CS496/assignments/hw3/PLaF/src/let
+# Auto-detected concurrency: 8
+# Dune context:
+#  { name = "default"
+#  ; kind = "default"
+#  ; profile = Dev
+#  ; merlin = true
+#  ; fdo_target_exe = None
+#  ; build_dir = In_build_dir "default"
+#  ; installed_env =
+#      map
+#        { "INSIDE_DUNE" :
+#            "/Users/tiffanypak/Desktop/CS496/assignments/hw3/PLaF/src/let/_build/default"
+#        ; "OCAML_COLOR" : "always"
+#        ; "OPAMCOLOR" : "always"
+#        }
+#  ; instrument_with = []
+#  }
+$ /usr/local/bin/ocamlc.opt -config > /var/folders/2k/l54yfctx1md_77td3cdbwk7c0000gn/T/dune_84ea46_output
+$ (cd _build/default && /usr/local/bin/ocamldep.opt -modules -impl lib/interp.ml) > _build/default/lib/.let.objs/let__Interp.impl.d
+$ (cd _build/default && /usr/local/bin/ocamldep.opt -modules -impl lib/ds.ml) > _build/default/lib/.let.objs/let__Ds.impl.d
+$ (cd _build/default && /usr/local/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -bin-annot -I lib/.let.objs/byte -I /Users/tiffanypak/.opam/5.1.0/lib/menhirLib -I /Users/tiffanypak/.opam/5.1.0/lib/parser_plaf -no-alias-deps -opaque -open Let -o lib/.let.objs/byte/let__Ds.cmo -c -impl lib/ds.ml)
+$ (cd _build/default && /usr/local/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -bin-annot -I lib/.let.objs/byte -I /Users/tiffanypak/.opam/5.1.0/lib/menhirLib -I /Users/tiffanypak/.opam/5.1.0/lib/parser_plaf -no-alias-deps -opaque -open Let -o lib/.let.objs/byte/let__Interp.cmo -c -impl lib/interp.ml)
+$ (cd _build/default && /usr/local/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -warn-error -A -g -a -o lib/let.cma lib/.let.objs/byte/let.cmo lib/.let.objs/byte/let__Ds.cmo lib/.let.objs/byte/let__Interp.cmo)
+$ (cd _build/default && /usr/local/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -w -24 -g -bin-annot -I lib/.utop/.utop.eobjs/byte -I /Users/tiffanypak/.opam/5.1.0/lib/bytes -I /Users/tiffanypak/.opam/5.1.0/lib/findlib -I /Users/tiffanypak/.opam/5.1.0/lib/lambda-term -I /Users/tiffanypak/.opam/5.1.0/lib/logs -I /Users/tiffanypak/.opam/5.1.0/lib/lwt -I /Users/tiffanypak/.opam/5.1.0/lib/lwt/unix -I /Users/tiffanypak/.opam/5.1.0/lib/lwt_react -I /Users/tiffanypak/.opam/5.1.0/lib/menhirLib -I /Users/tiffanypak/.opam/5.1.0/lib/mew -I /Users/tiffanypak/.opam/5.1.0/lib/mew_vi -I /Users/tiffanypak/.opam/5.1.0/lib/ocplib-endian -I /Users/tiffanypak/.opam/5.1.0/lib/ocplib-endian/bigstring -I /Users/tiffanypak/.opam/5.1.0/lib/parser_plaf -I /Users/tiffanypak/.opam/5.1.0/lib/react -I /Users/tiffanypak/.opam/5.1.0/lib/result -I /Users/tiffanypak/.opam/5.1.0/lib/trie -I /Users/tiffanypak/.opam/5.1.0/lib/uchar -I /Users/tiffanypak/.opam/5.1.0/lib/utop -I /Users/tiffanypak/.opam/5.1.0/lib/uucp -I /Users/tiffanypak/.opam/5.1.0/lib/uuseg -I /Users/tiffanypak/.opam/5.1.0/lib/uutf -I /Users/tiffanypak/.opam/5.1.0/lib/xdg -I /Users/tiffanypak/.opam/5.1.0/lib/zed -I /usr/local/lib/ocaml/compiler-libs -I /usr/local/lib/ocaml/threads -I /usr/local/lib/ocaml/unix -I lib/.let.objs/byte -no-alias-deps -o lib/.utop/.utop.eobjs/byte/dune__exe__Utop.cmo -c -impl lib/.utop/utop.ml-gen)
+$ (cd _build/default && /usr/local/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -w -24 -g -o lib/.utop/utop.bc /usr/local/lib/ocaml/compiler-libs/ocamlcommon.cma /usr/local/lib/ocaml/compiler-libs/ocamlbytecomp.cma /usr/local/lib/ocaml/compiler-libs/ocamltoplevel.cma /Users/tiffanypak/.opam/5.1.0/lib/findlib/findlib.cma /Users/tiffanypak/.opam/5.1.0/lib/findlib/findlib_top.cma /Users/tiffanypak/.opam/5.1.0/lib/logs/logs.cma /Users/tiffanypak/.opam/5.1.0/lib/lwt/lwt.cma /Users/tiffanypak/.opam/5.1.0/lib/logs/logs_lwt.cma /Users/tiffanypak/.opam/5.1.0/lib/ocplib-endian/ocplib_endian.cma /Users/tiffanypak/.opam/5.1.0/lib/ocplib-endian/bigstring/ocplib_endian_bigstring.cma /usr/local/lib/ocaml/unix/unix.cma /usr/local/lib/ocaml/threads/threads.cma /Users/tiffanypak/.opam/5.1.0/lib/lwt/unix/lwt_unix.cma -I /Users/tiffanypak/.opam/5.1.0/lib/lwt/../stublibs /Users/tiffanypak/.opam/5.1.0/lib/react/react.cma /Users/tiffanypak/.opam/5.1.0/lib/lwt_react/lwt_react.cma /Users/tiffanypak/.opam/5.1.0/lib/result/result.cma /Users/tiffanypak/.opam/5.1.0/lib/uutf/uutf.cma /Users/tiffanypak/.opam/5.1.0/lib/uucp/uucp.cma /Users/tiffanypak/.opam/5.1.0/lib/uuseg/uuseg.cma /Users/tiffanypak/.opam/5.1.0/lib/zed/zed.cma /Users/tiffanypak/.opam/5.1.0/lib/trie/trie.cma /Users/tiffanypak/.opam/5.1.0/lib/mew/mew.cma /Users/tiffanypak/.opam/5.1.0/lib/mew_vi/mew_vi.cma /Users/tiffanypak/.opam/5.1.0/lib/lambda-term/lambda_term.cma -I /Users/tiffanypak/.opam/5.1.0/lib/lambda-term/../stublibs /Users/tiffanypak/.opam/5.1.0/lib/xdg/xdg.cma -I /Users/tiffanypak/.opam/5.1.0/lib/xdg/../stublibs /Users/tiffanypak/.opam/5.1.0/lib/utop/uTop.cma /Users/tiffanypak/.opam/5.1.0/lib/menhirLib/menhirLib.cma /Users/tiffanypak/.opam/5.1.0/lib/parser_plaf/parser_plaf.cma lib/let.cma lib/.utop/.utop.eobjs/byte/dune__exe__Utop.cmo -linkall -warn-error -31)
